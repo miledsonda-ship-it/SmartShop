@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartShop - Accueil</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="container header-inner">
+        <h1 class="logo"><a href="index.html">SmartShop</a></h1>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="shop.html">Boutique</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="cart.html">Panier</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <h2>Bienvenue sur SmartShop</h2>
+        <p>Trouvez les meilleurs produits électroniques aux meilleurs prix.</p>
+        <a class="btn" href="shop.html">Commencer à shopper</a>
+    </div>
+</section>
+
+<section class="products container">
+    <h2>Produits populaires</h2>
+    <div class="product-grid">
+        <article class="product-card">
+            <img src="assets/images/phone.jpg" alt="Smartphone">
+            <h3>Smartphone</h3>
+            <p class="price">À partir de 400dt</p>
+            <button class="add-btn">Ajouter au panier</button>
+        </article>
+        <article class="product-card">
+            <img src="assets/images/headphones.jpg" alt="Casque audio">
+            <h3>Casque audio</h3>
+            <p class="price">À partir de 100dt</p>
+            <button class="add-btn">Ajouter au panier</button>
+        </article>
+        <article class="product-card">
+            <img src="assets/images/laptop.jpg" alt="Ordinateur portable">
+            <h3>Ordinateur portable</h3>
+            <p class="price">À partir de 1500dt</p>
+            <button class="add-btn">Ajouter au panier</button>
+        </article>
+    </div>
+</section>
+
+<script>
+    document.querySelectorAll(".add-btn").forEach(button => {
+        button.addEventListener("click", function() {
+            const product = this.parentElement;
+            const name = product.querySelector("h3").textContent;
+            const price = product.querySelector(".price").textContent;
+
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.push({name: name, price: price});
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            alert(name + " ajouté au panier !");
+        });
+    });
+</script>
+</body>
+</html>
